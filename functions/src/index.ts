@@ -4,6 +4,7 @@ import * as admin from "firebase-admin";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as request from "request-promise-native";
+import * as cors from "cors";
 
 //initialize firebase inorder to access its services
 admin.initializeApp(functions.config().firebase);
@@ -11,6 +12,7 @@ admin.initializeApp(functions.config().firebase);
 //initialize express server
 const app = express();
 const main = express();
+main.use(cors({ origin: true }));
 
 //add the path to receive request and set json as bodyParser to process the body
 main.use("/api/v1", app);
